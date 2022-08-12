@@ -5,6 +5,9 @@ pluginManagement {
 		maven {
 			url 'https://repo.spring.io/plugins-release'
 		}
+		maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+
 		if (version.endsWith('BUILD-SNAPSHOT')) {
 			maven { url "https://repo.spring.io/snapshot" }
 		}
