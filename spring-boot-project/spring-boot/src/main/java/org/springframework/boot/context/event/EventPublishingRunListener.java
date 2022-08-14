@@ -19,6 +19,8 @@ package org.springframework.boot.context.event;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
 import org.springframework.boot.availability.AvailabilityChangeEvent;
@@ -69,23 +71,27 @@ public class EventPublishingRunListener implements SpringApplicationRunListener,
 		return 0;
 	}
 
+	// 当调用 run 方法后会立即调用，可以用于非常早期的初始化
 	@Override
 	public void starting() {
 		this.initialMulticaster.multicastEvent(new ApplicationStartingEvent(this.application, this.args));
 	}
 
+	// 环境准备好之后调用
 	@Override
 	public void environmentPrepared(ConfigurableEnvironment environment) {
 		this.initialMulticaster
 				.multicastEvent(new ApplicationEnvironmentPreparedEvent(this.application, this.args, environment));
 	}
 
+	// 在加载资源之前，ApplicationContex 准备好之后调用
 	@Override
 	public void contextPrepared(ConfigurableApplicationContext context) {
 		this.initialMulticaster
 				.multicastEvent(new ApplicationContextInitializedEvent(this.application, this.args, context));
 	}
 
+	// 在加载应用程序上下文但在其刷新之前调用
 	@Override
 	public void contextLoaded(ConfigurableApplicationContext context) {
 		for (ApplicationListener<?> listener : this.application.getListeners()) {
@@ -97,18 +103,27 @@ public class EventPublishingRunListener implements SpringApplicationRunListener,
 		this.initialMulticaster.multicastEvent(new ApplicationPreparedEvent(this.application, this.args, context));
 	}
 
+	/**
+	 * 上下文已经刷新且应用程序已启动，且所有 {@link CommandLineRunner commandLineRunner}
+	 * 和 {@link ApplicationRunner ApplicationRunners} 未调用之前调用
+	 */
 	@Override
 	public void started(ConfigurableApplicationContext context) {
 		context.publishEvent(new ApplicationStartedEvent(this.application, this.args, context));
 		AvailabilityChangeEvent.publish(context, LivenessState.CORRECT);
 	}
 
+	/**
+	 * 当应用程序上下文被刷新，并且所有 {@link CommandLineRunner commandLineRunner}
+	 * 和{@link ApplicationRunner ApplicationRunners} 都已被调用时，在 run 方法结束之前立即调用。
+	 */
 	@Override
 	public void running(ConfigurableApplicationContext context) {
 		context.publishEvent(new ApplicationReadyEvent(this.application, this.args, context));
 		AvailabilityChangeEvent.publish(context, ReadinessState.ACCEPTING_TRAFFIC);
 	}
 
+	// 在启动过程发生失败时调用
 	@Override
 	public void failed(ConfigurableApplicationContext context, Throwable exception) {
 		ApplicationFailedEvent event = new ApplicationFailedEvent(this.application, this.args, context, exception);
