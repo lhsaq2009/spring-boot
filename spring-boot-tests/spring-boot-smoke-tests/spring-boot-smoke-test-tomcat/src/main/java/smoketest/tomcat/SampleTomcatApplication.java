@@ -24,32 +24,36 @@ import org.apache.commons.logging.LogFactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
+@ImportResource(locations = {"classpath:spring.xml"})
 public class SampleTomcatApplication {
 
-	private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
+    private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
 
-	@Bean
-	protected ServletContextListener listener() {
-		return new ServletContextListener() {
+    @Bean
+    protected ServletContextListener listener() {
+        return new ServletContextListener() {
 
-			@Override
-			public void contextInitialized(ServletContextEvent sce) {
-				logger.info("ServletContext initialized");
-			}
+            @Override
+            public void contextInitialized(ServletContextEvent sce) {
+                logger.info("ServletContext initialized");
+            }
 
-			@Override
-			public void contextDestroyed(ServletContextEvent sce) {
-				logger.info("ServletContext destroyed");
-			}
+            @Override
+            public void contextDestroyed(ServletContextEvent sce) {
+                logger.info("ServletContext destroyed");
+            }
 
-		};
-	}
+        };
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(SampleTomcatApplication.class, args);
-	}
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ctx = SpringApplication.run(SampleTomcatApplication.class, args);
+        System.out.println(ctx.getClass().getSimpleName());     // AnnotationConfigServletWebServerApplicationContext
+    }
 
 }

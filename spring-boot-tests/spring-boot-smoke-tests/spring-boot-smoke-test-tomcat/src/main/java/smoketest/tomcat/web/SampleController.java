@@ -16,23 +16,39 @@
 
 package smoketest.tomcat.web;
 
-import smoketest.tomcat.service.HelloWorldService;
-
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import smoketest.tomcat.Student;
+import smoketest.tomcat.service.HelloWorldService;
 
 @Controller
-public class SampleController {
+public class SampleController implements ApplicationContextAware {
 
-	@Autowired
-	private HelloWorldService helloWorldService;
+    @Autowired
+    private HelloWorldService helloWorldService;
 
-	@GetMapping("/")
-	@ResponseBody
-	public String helloWorld() {
-		return this.helloWorldService.getHelloMessage();
-	}
+    private ApplicationContext ctx;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.ctx = applicationContext;
+    }
+
+    @GetMapping("/")
+    @ResponseBody
+    public String helloWorld() {
+        // return this.helloWorldService.getHelloMessage();
+
+        Student student = (Student) ctx.getBean("student");
+        return student.getName();
+    }
+
 
 }
