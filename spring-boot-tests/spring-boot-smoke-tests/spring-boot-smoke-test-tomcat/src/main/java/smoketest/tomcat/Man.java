@@ -4,6 +4,7 @@ package smoketest.tomcat;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 /**
  * 生命周期的一些方法，{@link AbstractAutowireCapableBeanFactory#initializeBean(String, Object, RootBeanDefinition)}
  */
-public class Man implements BeanPostProcessor, BeanNameAware/*, ApplicationContextAware*/ {
+public class Man implements SmartInitializingSingleton, BeanPostProcessor, BeanNameAware/*, ApplicationContextAware*/ {
 
     private String beanName;
 
@@ -34,6 +35,11 @@ public class Man implements BeanPostProcessor, BeanNameAware/*, ApplicationConte
     @Override
     public void setBeanName(String name) {
         this.beanName = name;                       // 回调传给我用
+    }
+
+    @Override
+    public void afterSingletonsInstantiated() {
+        System.out.println("当所有单例 Bean 都初始化完毕，IOC 容器会回调 afterSingletonsInstantiated()");
     }
 
     /*
