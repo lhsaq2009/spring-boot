@@ -35,6 +35,11 @@ public class SampleTomcatApplication {
     private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
 
     @Bean
+    public Man man() {
+        return new Man();
+    }
+
+    @Bean
     protected ServletContextListener listener() {
         return new ServletContextListener() {
 
