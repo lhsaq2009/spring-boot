@@ -16,28 +16,33 @@
 
 package smoketest.tomcat;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 @SpringBootApplication
+@EnableTransactionManagement
 @ImportResource(locations = {"classpath:spring.xml"})
 public class SampleTomcatApplication {
 
     private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
 
-    @Bean
+    /*@Bean
     public Man man() {
         return new Man();
-    }
+    }*/
 
     @Bean
     protected ServletContextListener listener() {
@@ -60,5 +65,4 @@ public class SampleTomcatApplication {
         ConfigurableApplicationContext ctx = SpringApplication.run(SampleTomcatApplication.class, args);
         System.out.println(ctx.getClass().getSimpleName());     // AnnotationConfigServletWebServerApplicationContext
     }
-
 }

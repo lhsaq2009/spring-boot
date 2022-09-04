@@ -1,0 +1,22 @@
+# debug: true
+server:
+  compression:
+    enabled: true
+  min-response-size: 1
+  tomcat.connection-timeout: 5s
+
+spring:
+  port: 8080
+  profiles:
+    # 默认激活选项
+    active: dev
+    include: mq
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://rm-bp150s48920cjevsweo.mysql.rds.aliyuncs.com:3306/test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true"
+    username: haisen
+    password: Haisen123
+
+
+
+

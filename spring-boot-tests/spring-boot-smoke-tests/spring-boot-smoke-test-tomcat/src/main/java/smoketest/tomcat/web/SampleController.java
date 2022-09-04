@@ -27,6 +27,9 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import smoketest.tomcat.Student;
 import smoketest.tomcat.service.HelloWorldService;
+import smoketest.tomcat.service.UserService;
+
+import javax.annotation.Resource;
 
 @Controller
 public class SampleController implements ApplicationContextAware {
@@ -50,5 +53,17 @@ public class SampleController implements ApplicationContextAware {
         return student.getName();
     }
 
+    @Resource
+    private UserService userService;
 
+    @GetMapping("/register")
+    @ResponseBody
+    public String register(String username) {
+        try {
+            userService.register(username);
+        } catch (Exception e) {
+            System.out.println("userService.register 发生异常：" + e.getMessage());
+        }
+        return "success";
+    }
 }
