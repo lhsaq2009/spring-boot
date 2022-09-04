@@ -38,7 +38,7 @@ import org.springframework.core.Ordered;
  * @since 2.2.0
  * @see LazyInitializationExcludeFilter
  */
-public final class LazyInitializationBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
+public final class LazyInitializationBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {	//
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {

@@ -47,8 +47,12 @@ import org.springframework.http.converter.support.AllEncompassingFormHttpMessage
  * @author Artsiom Yudovin
  * @since 1.3.0
  */
+
+/**
+ * 对于一些耗时的任务使用一个后台线程尽早触发它们开始执行初始化，这是 SpringBoot 的缺省行为但是这里并没有采取动作
+ */
 @Order(LoggingApplicationListener.DEFAULT_ORDER + 1)
-public class BackgroundPreinitializer implements ApplicationListener<SpringApplicationEvent> {
+public class BackgroundPreinitializer implements ApplicationListener<SpringApplicationEvent> {		// 解决耗时任务，提早执行
 
 	/**
 	 * System property that instructs Spring Boot how to run pre initialization. When the

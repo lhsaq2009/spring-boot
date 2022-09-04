@@ -45,14 +45,14 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
  *
  * @author Phillip Webb
  */
-class SharedMetadataReaderFactoryContextInitializer
+class SharedMetadataReaderFactoryContextInitializer		//
 		implements ApplicationContextInitializer<ConfigurableApplicationContext>, Ordered {
 
 	public static final String BEAN_NAME = "org.springframework.boot.autoconfigure."
 			+ "internalCachingMetadataReaderFactory";
 
 	@Override
-	public void initialize(ConfigurableApplicationContext applicationContext) {
+	public void initialize(ConfigurableApplicationContext applicationContext) {	//
 		applicationContext.addBeanFactoryPostProcessor(new CachingMetadataReaderFactoryPostProcessor());
 	}
 

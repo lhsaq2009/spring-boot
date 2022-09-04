@@ -55,7 +55,7 @@ import org.springframework.util.StringUtils;
  * @author Vladislav Kisel
  * @see #setBeanNameGenerator(BeanNameGenerator)
  */
-class BeanDefinitionLoader {
+class BeanDefinitionLoader {	//
 
 	private final Object[] sources;
 
@@ -122,7 +122,7 @@ class BeanDefinitionLoader {
 	 * Load the sources into the reader.
 	 * @return the number of loaded beans
 	 */
-	int load() {
+	int load() {		//
 		int count = 0;
 		for (Object source : this.sources) {
 			count += load(source);
@@ -130,7 +130,7 @@ class BeanDefinitionLoader {
 		return count;
 	}
 
-	private int load(Object source) {
+	private int load(Object source) {		//
 		Assert.notNull(source, "Source must not be null");
 		if (source instanceof Class<?>) {
 			return load((Class<?>) source);
@@ -147,7 +147,7 @@ class BeanDefinitionLoader {
 		throw new IllegalArgumentException("Invalid source type " + source.getClass());
 	}
 
-	private int load(Class<?> source) {
+	private int load(Class<?> source) {		//
 		if (isGroovyPresent() && GroovyBeanDefinitionSource.class.isAssignableFrom(source)) {
 			// Any GroovyLoaders added in beans{} DSL can contribute beans here
 			GroovyBeanDefinitionSource loader = BeanUtils.instantiateClass(source, GroovyBeanDefinitionSource.class);
