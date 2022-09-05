@@ -27,6 +27,7 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import smoketest.tomcat.Student;
 import smoketest.tomcat.service.HelloWorldService;
+import smoketest.tomcat.service.TaskPoolService;
 import smoketest.tomcat.service.UserService;
 
 import javax.annotation.Resource;
@@ -36,6 +37,8 @@ public class SampleController implements ApplicationContextAware {
 
     @Autowired
     private HelloWorldService helloWorldService;
+    @Autowired
+    private TaskPoolService taskPoolService;
 
     private ApplicationContext ctx;
 
@@ -46,8 +49,16 @@ public class SampleController implements ApplicationContextAware {
 
     @GetMapping("/")
     @ResponseBody
-    public String helloWorld() {
+    public String helloWorld() throws InterruptedException {
         // return this.helloWorldService.getHelloMessage();
+
+        System.out.println("taskPoolService.taskA(); 1");
+        taskPoolService.taskA();
+        System.out.println("taskPoolService.taskA(); 2");
+        System.out.println("taskPoolService.taskB(); 1");
+        taskPoolService.taskB();
+        System.out.println("taskPoolService.taskB(); 2");
+
 
         Student student = (Student) ctx.getBean("student");
         return student.getName();

@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -63,6 +64,6 @@ public class SampleTomcatApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(SampleTomcatApplication.class, args);
-        System.out.println(ctx.getClass().getSimpleName());     // AnnotationConfigServletWebServerApplicationContext
+        // System.out.println(ctx.getClass().getSimpleName());     // AnnotationConfigServletWebServerApplicationContext
     }
 }
