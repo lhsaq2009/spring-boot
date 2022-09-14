@@ -164,22 +164,22 @@ public class SpringApplication {
 	 * The class name of application context that will be used by default for non-web
 	 * environments.
 	 */
-	public static final String DEFAULT_CONTEXT_CLASS = "org.springframework.context."
-			+ "annotation.AnnotationConfigApplicationContext";
+	public static final String DEFAULT_CONTEXT_CLASS =
+			"org.springframework.context.annotation.AnnotationConfigApplicationContext";
 
 	/**
 	 * The class name of application context that will be used by default for web
 	 * environments.
 	 */
-	public static final String DEFAULT_SERVLET_WEB_CONTEXT_CLASS = "org.springframework.boot."
-			+ "web.servlet.context.AnnotationConfigServletWebServerApplicationContext";
+	public static final String DEFAULT_SERVLET_WEB_CONTEXT_CLASS =
+			"org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext";
 
 	/**
 	 * The class name of application context that will be used by default for reactive web
 	 * environments.
 	 */
-	public static final String DEFAULT_REACTIVE_WEB_CONTEXT_CLASS = "org.springframework."
-			+ "boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext";
+	public static final String DEFAULT_REACTIVE_WEB_CONTEXT_CLASS =
+			"org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext";
 
 	/**
 	 * Default banner location.
@@ -195,7 +195,7 @@ public class SpringApplication {
 
 	private static final Log logger = LogFactory.getLog(SpringApplication.class);
 
-	private Set<Class<?>> primarySources;
+	private Set<Class<?>> primarySources;   // 在构造 SpringApplication 对象 时，会将启动 Main 类传入的
 
 	private Set<String> sources = new LinkedHashSet<>();
 
@@ -217,6 +217,12 @@ public class SpringApplication {
 
 	private ConfigurableEnvironment environment;
 
+	/**
+	 * 比如：Spring Boot 的启动类 这样写，用自定义指定的类
+	 * SpringApplication springApplication = new SpringApplication(SampleAopApplication.class);
+	 * springApplication.setApplicationContextClass(MyCustomApplicationContext.class);
+	 * springApplication.run(args);
+	 */
 	private Class<? extends ConfigurableApplicationContext> applicationContextClass;
 
 	private WebApplicationType webApplicationType;
