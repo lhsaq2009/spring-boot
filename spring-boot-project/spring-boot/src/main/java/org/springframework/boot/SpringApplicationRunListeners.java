@@ -35,6 +35,10 @@ class SpringApplicationRunListeners {
 
 	private final Log log;
 
+	/**
+	 * listeners = {ArrayList@1792}  size = 1
+	 * 		0 = {EventPublishingRunListener@3498}
+	 */
 	private final List<SpringApplicationRunListener> listeners;
 
 	SpringApplicationRunListeners(Log log, Collection<? extends SpringApplicationRunListener> listeners) {
