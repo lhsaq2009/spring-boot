@@ -307,6 +307,13 @@ public class SpringApplication {
 		ConfigurableApplicationContext context = null;
 		Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList<>();
 		configureHeadlessProperty();
+		/**
+		 * =>> SpringApplication#SpringApplication(ResourceLoader, java.lang.Class[])
+		 *     getSpringFactoriesInstances(ApplicationContextInitializer.class)，就已经扫描全部加载缓存
+		 *
+		 * 来自：META-INF/spring.factories 配置的 org.springframework.boot.SpringApplicationRunListener
+		 *     0 = "org.springframework.boot.context.event.EventPublishingRunListener"
+		 */
 		SpringApplicationRunListeners listeners = getRunListeners(args);
 		listeners.starting();
 		try {
