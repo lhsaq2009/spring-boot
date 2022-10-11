@@ -89,7 +89,7 @@ import org.springframework.util.StringUtils;
  * @since 2.0.0
  * @see LoggingSystem#get(ClassLoader)
  */
-public class LoggingApplicationListener implements GenericApplicationListener {
+public class LoggingApplicationListener implements GenericApplicationListener {		// 开始初始化日志系统
 
 	private static final ConfigurationPropertyName LOGGING_LEVEL = ConfigurationPropertyName.of("logging.level");
 
@@ -208,7 +208,7 @@ public class LoggingApplicationListener implements GenericApplicationListener {
 	}
 
 	@Override
-	public void onApplicationEvent(ApplicationEvent event) {
+	public void onApplicationEvent(ApplicationEvent event) { //
 		if (event instanceof ApplicationStartingEvent) {
 			onApplicationStartingEvent((ApplicationStartingEvent) event);
 		}

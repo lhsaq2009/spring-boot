@@ -38,7 +38,12 @@ import org.springframework.core.ResolvableType;
  * @author Andy Wilkinson
  * @since 2.0.0
  */
-public final class ClasspathLoggingApplicationListener implements GenericApplicationListener {
+/*
+ * 没有开启日志调试系统，故什么也没有做
+ * 如果开启的话，针对 ApplicationEnvironmentPreparedEvent 类型的事件
+ * 会打印 ("Application started with classpath: " + this.getClasspath()) 这么一条信息
+ */
+public final class ClasspathLoggingApplicationListener implements GenericApplicationListener {	// 日志调试系统
 
 	private static final int ORDER = LoggingApplicationListener.DEFAULT_ORDER + 1;
 

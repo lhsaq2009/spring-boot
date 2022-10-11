@@ -153,7 +153,7 @@ class BeanDefinitionLoader {	//
 			GroovyBeanDefinitionSource loader = BeanUtils.instantiateClass(source, GroovyBeanDefinitionSource.class);
 			load(loader);
 		}
-		if (isEligible(source)) {
+		if (isEligible(source)) {		//
 			this.annotatedReader.register(source);
 			return 1;
 		}

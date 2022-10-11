@@ -45,7 +45,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @author Madhura Bhave
  * @since 1.0.0
  */
-public class FileEncodingApplicationListener
+public class FileEncodingApplicationListener	// 但是这里并没有采取动作，因为没有设置spring.mandatory-file-encoding属性
 		implements ApplicationListener<ApplicationEnvironmentPreparedEvent>, Ordered {
 
 	private static final Log logger = LogFactory.getLog(FileEncodingApplicationListener.class);

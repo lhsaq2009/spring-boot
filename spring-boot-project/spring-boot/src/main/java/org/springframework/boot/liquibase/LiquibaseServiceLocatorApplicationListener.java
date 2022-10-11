@@ -33,7 +33,7 @@ import org.springframework.util.ClassUtils;
  * @author Dave Syer
  * @since 1.0.0
  */
-public class LiquibaseServiceLocatorApplicationListener implements ApplicationListener<ApplicationStartingEvent> {
+public class LiquibaseServiceLocatorApplicationListener implements ApplicationListener<ApplicationStartingEvent> {	//
 
 	private static final Log logger = LogFactory.getLog(LiquibaseServiceLocatorApplicationListener.class);
 

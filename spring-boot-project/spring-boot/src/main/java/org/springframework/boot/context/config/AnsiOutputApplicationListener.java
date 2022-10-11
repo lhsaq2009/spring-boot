@@ -33,7 +33,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @author Madhura Bhave
  * @since 1.2.0
  */
-public class AnsiOutputApplicationListener
+public class AnsiOutputApplicationListener			// 设置 Ansi 输出，设置彩色输出让日志更具有可读性
 		implements ApplicationListener<ApplicationEnvironmentPreparedEvent>, Ordered {
 
 	@Override

@@ -41,7 +41,8 @@ import org.springframework.util.StringUtils;
  * @author Phillip Webb
  * @since 1.0.0
  */
-public class DelegatingApplicationListener implements ApplicationListener<ApplicationEvent>, Ordered {
+// 但是这里并没有采取动作，因为没有设置 context.listener.classes 属性
+public class DelegatingApplicationListener implements ApplicationListener<ApplicationEvent>, Ordered {		//
 
 	// NOTE: Similar to org.springframework.web.context.ContextLoader
 

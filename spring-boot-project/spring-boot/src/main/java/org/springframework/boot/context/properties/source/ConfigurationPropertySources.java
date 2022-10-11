@@ -68,15 +68,19 @@ public final class ConfigurationPropertySources {
 	 * {@link ConfigurableEnvironment})
 	 * @see #get(Environment)
 	 */
+	// 将前面的属性源打包起来成为一个属性源，放在属性源集合的第一位，形成循环依赖
 	public static void attach(Environment environment) {
 		Assert.isInstanceOf(ConfigurableEnvironment.class, environment);
+		// 获取 Environment 的属性集
 		MutablePropertySources sources = ((ConfigurableEnvironment) environment).getPropertySources();
 		PropertySource<?> attached = sources.get(ATTACHED_PROPERTY_SOURCE_NAME);
+		// 如果名为 configurationProperties 的属性源不为空，并且获取的属性集不等于 sources，则清空，重写
 		if (attached != null && attached.getSource() != sources) {
 			sources.remove(ATTACHED_PROPERTY_SOURCE_NAME);
 			attached = null;
 		}
 		if (attached == null) {
+			// 将 sources 封装成 ConfigurationPropertySourcesPropertySource 对象，并把这个对象放到 sources 的第一位形成循环依赖
 			sources.addFirst(new ConfigurationPropertySourcesPropertySource(ATTACHED_PROPERTY_SOURCE_NAME,
 					new SpringConfigurationPropertySources(sources)));
 		}

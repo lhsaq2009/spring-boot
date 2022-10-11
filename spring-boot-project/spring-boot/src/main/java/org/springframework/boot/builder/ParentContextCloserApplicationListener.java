@@ -37,7 +37,7 @@ import org.springframework.util.ObjectUtils;
  * @author Eric Bottard
  * @since 1.0.0
  */
-public class ParentContextCloserApplicationListener
+public class ParentContextCloserApplicationListener	//
 		implements ApplicationListener<ParentContextAvailableEvent>, ApplicationContextAware, Ordered {
 
 	private int order = Ordered.LOWEST_PRECEDENCE - 10;

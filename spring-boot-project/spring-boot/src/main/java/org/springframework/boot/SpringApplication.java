@@ -394,7 +394,7 @@ public class SpringApplication {
 		}
 		if (beanFactory instanceof DefaultListableBeanFactory) {
 			((DefaultListableBeanFactory) beanFactory)
-					.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
+					.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);		// springApplication.setAllowBeanDefinitionOverriding(true);
 		}
 		if (this.lazyInitialization) {
 			context.addBeanFactoryPostProcessor(new LazyInitializationBeanFactoryPostProcessor());

@@ -98,7 +98,7 @@ class JavaBeanBinder implements DataObjectBinder {
 			return false;
 		}
 		if (property.isSettable()) {
-			property.setValue(beanSupplier, bound);
+			property.setValue(beanSupplier, bound);		// 将配置文件的配置属性，绑定到 SpringApplication"
 		}
 		else if (value == null || !bound.equals(value.get())) {
 			throw new IllegalStateException("No setter found for property: " + property.getName());

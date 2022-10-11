@@ -53,12 +53,30 @@ import org.springframework.util.ClassUtils;
  * @see ServletWebServerApplicationContext
  * @see AnnotationConfigServletWebApplicationContext
  */
-public class AnnotationConfigServletWebServerApplicationContext extends ServletWebServerApplicationContext
+/*
+ *                        ┌──────────────────────▶ ApplicationContext ◀───────────────────────┐
+ *                        │                                 ▲                                 │
+ *           WebServerApplicationContext       ConfigurableApplicationContext       WebApplicationContext
+ *                        ▲                               ▲ ▲ ▲                               ▲
+ *                        ├───────────────────────────────┘ │ └───────────────────────────────┤
+ *                        │                     AbstractApplicationContext                    │
+ *                        │                                 ▲                                 │
+ * ConfigurableWebServerApplicationContext      GenericApplicationContext      ConfigurableWebApplicationContext
+ *                        ▲                                 ▲                                 ▲
+ *                        │                                 └────────────────┬────────────────┘
+ *                        │                                    GenericWebApplicationContext
+ *                        │                                                  ▲
+ *                        └─────────────────────────────────┬────────────────┘
+ *                                          ServletWebServerApplicationContext
+ *                                                          ▲
+ *                                  AnnotationConfigServletWebServerApplicationContext
+ */
+public class AnnotationConfigServletWebServerApplicationContext extends ServletWebServerApplicationContext	// sss
 		implements AnnotationConfigRegistry {
 
-	private final AnnotatedBeanDefinitionReader reader;
+	private final AnnotatedBeanDefinitionReader reader;			//
 
-	private final ClassPathBeanDefinitionScanner scanner;
+	private final ClassPathBeanDefinitionScanner scanner;		//
 
 	private final Set<Class<?>> annotatedClasses = new LinkedHashSet<>();
 
