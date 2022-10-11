@@ -29,3 +29,13 @@ allprojects {
 		resolutionStrategy.cacheChangingModulesFor 0, "minutes"
 	}
 }
+
+// 去除单元测试，javadoc：https://juejin.cn/post/6952801843328057381
+subprojects {
+	tasks.withType(Javadoc).all {
+		enabled = false
+	}
+	tasks.withType(Test).all {
+		enabled = false
+	}
+}
