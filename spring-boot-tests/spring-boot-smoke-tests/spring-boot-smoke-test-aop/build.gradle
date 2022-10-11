@@ -7,6 +7,6 @@ description = "Spring Boot AOP smoke test"
 
 dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-aop"))
-
-	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	// testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+	implementation 'org.jodd:jodd-bean:5.1.6'
 }

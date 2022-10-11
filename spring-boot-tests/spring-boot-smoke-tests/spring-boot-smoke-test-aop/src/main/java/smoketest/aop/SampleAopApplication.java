@@ -16,6 +16,7 @@
 
 package smoketest.aop;
 
+import org.springframework.context.annotation.ComponentScan;
 import smoketest.aop.service.HelloWorldService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+// @ComponentScan()
 public class SampleAopApplication implements CommandLineRunner {
 
-	// Simple example shows how an application can spy on itself with AOP
+    @Autowired
+    private HelloWorldService helloWorldService;
 
-	@Autowired
-	private HelloWorldService helloWorldService;
+    @Override
+    public void run(String... args) {
+        this.helloWorldService.sayHello();
+    }
 
-	@Override
-	public void run(String... args) {
-		System.out.println(this.helloWorldService.getHelloMessage());
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(SampleAopApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SampleAopApplication.class, args);
+    }
 
 }

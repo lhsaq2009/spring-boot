@@ -16,17 +16,23 @@
 
 package smoketest.aop.service;
 
+import jodd.util.ThreadUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.Date;
+
+@Controller
 public class HelloWorldService {
 
-	@Value("${name:World}")
-	private String name;
+    @Value("${name:World}")
+    private String name;
 
-	public String getHelloMessage() {
-		return "Hello " + this.name;
-	}
+    public void sayHello() {
+        ThreadUtil.sleep(100);
+        System.out.println("Hello " + this.name + "   :" + new Date());
+    }
 
 }

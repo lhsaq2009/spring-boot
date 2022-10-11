@@ -2,7 +2,6 @@ package smoketest.tomcat.service;
 
 import jodd.util.ThreadUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.AdviceMode;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
